@@ -8,8 +8,14 @@
 <h1 align="center">ThreadAI</h1>
 
 <p align="center">
+  <a href="https://dsngeu.github.io/ThreadAI/">
+    <img src="https://img.shields.io/badge/%F0%9F%93%84%20App%20Overview-View%20Full%20Preview-5A70FF?style=for-the-badge" />
+  </a>
+</p>
+
+<p align="center">
   <b>A production-quality iOS AI chat app with branching sub-thread conversations.</b><br/>
-  Supports Claude (Anthropic) and OpenAI — use your own API keys.
+  Supports Anthropic and OpenAI — use your own API keys.
 </p>
 
 ---
@@ -34,7 +40,7 @@ You can **fork any message into a sub-thread**, where the parent conversation is
 ### Multi-Provider AI Support
 | Provider | Models | Context Window |
 |----------|--------|----------------|
-| Anthropic (Claude) | Claude Opus 4, Claude Sonnet 4, Claude Haiku 4.5 | 200k tokens |
+| Anthropic | Opus 4, Sonnet 4, Haiku 4.5 | 200k tokens |
 | OpenAI | GPT-4o, GPT-4o mini | 128k tokens |
 
 - Switch AI model mid-conversation from the chat toolbar
@@ -68,7 +74,7 @@ You can **fork any message into a sub-thread**, where the parent conversation is
 - Sub-threads displayed inline under their parent in the conversation list
 
 ### Settings & Security
-- Enter and validate Claude and OpenAI API keys
+- Enter and validate Anthropic and OpenAI API keys
 - Keys stored in the iOS **Keychain** — never in UserDefaults or logs
 - API key status: Not Set / Validating / Valid / Invalid
 - Validation makes a real 1-token test request before saving
@@ -139,7 +145,7 @@ Build and run on your device or simulator. No package manager setup needed — t
 
 ### Adding Your API Keys
 1. Open the app and go to the **Settings** tab
-2. Tap **Claude API Key** or **OpenAI API Key**
+2. Tap **Anthropic API Key** or **OpenAI API Key**
 3. Paste your key and tap **Validate & Save**
 4. A live test confirms the key works before it is stored
 
@@ -153,7 +159,7 @@ Keys are stored in the iOS Keychain and are never logged or transmitted anywhere
 ThreadAI/
 ├── App/                        # Entry point and dependency wiring
 ├── Core/
-│   ├── AIHarness/              # Provider protocol + Claude + OpenAI implementations
+│   ├── AIHarness/              # Provider protocol + Anthropic + OpenAI implementations
 │   ├── Domain/                 # Entities, UseCases, Repository protocols
 │   └── Data/                   # CoreData stack, repository implementations, Keychain
 ├── Features/
