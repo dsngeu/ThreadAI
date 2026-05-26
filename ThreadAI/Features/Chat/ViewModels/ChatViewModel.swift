@@ -27,8 +27,6 @@ final class ChatViewModel {
     private let messageRepo: any MessageRepository
     private let conversationRepo: any ConversationRepository
     private var streamingTask: Task<Void, Never>?
-    private var tokenBuffer = ""
-    private var lastFlush: ContinuousClock.Instant = .now
 
     init(conversation: Conversation, dependencies: AppDependencies) {
         self.conversation = conversation
@@ -51,35 +49,26 @@ final class ChatViewModel {
         let content = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !content.isEmpty, !isStreaming else { return }
 
+        let userMessage = Message.user(content, conversationID: conversation.id)
         inputText = ""
         isStreaming = true
         streamingContent = ""
-        messages.append(Message.user(content, conversationID: conversation.id))
+        messages.append(userMessage)
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
 
         streamingTask = Task {
             do {
-                tokenBuffer = ""
-                lastFlush = .now
-                for try await token in sendMessageUseCase.execute(userContent: content, in: conversation) {
-                    tokenBuffer += token
-                    let now = ContinuousClock.Instant.now
-                    if now - lastFlush >= .seconds(1) {
-                        streamingContent += tokenBuffer
-                        tokenBuffer = ""
-                        lastFlush = now
-                    }
+                for try await token in sendMessageUseCase.execute(userMessage: userMessage, in: conversation) {
+                    streamingContent += token
                 }
-                streamingContent += tokenBuffer
-                tokenBuffer = ""
             } catch is CancellationError {
             } catch {
                 errorMessage = error.localizedDescription
                 logger.error("Stream failed: \(error.localizedDescription)")
             }
+            await loadMessages()
             streamingContent = ""
             isStreaming = false
-            await loadMessages()
         }
     }
 

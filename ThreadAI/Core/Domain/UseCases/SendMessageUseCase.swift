@@ -26,13 +26,12 @@ final class SendMessageUseCase {
     /// Saves the user message, streams the AI response, saves the assistant message,
     /// and updates the conversation timestamp — all in one atomic flow.
     func execute(
-        userContent: String,
+        userMessage: Message,
         in conversation: Conversation
     ) -> AsyncThrowingStream<String, Error> {
         AsyncThrowingStream { continuation in
             Task {
                 do {
-                    let userMessage = Message.user(userContent, conversationID: conversation.id)
                     try await self.messageRepo.save(userMessage)
 
                     let contextMessages = try await self.contextChain.execute(for: conversation.id)

@@ -22,6 +22,19 @@ You can **fork any message into a sub-thread**, where the parent conversation is
 
 ---
 
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/conversation_list.png" width="200" alt="Conversation List" />
+  <img src="docs/screenshots/topic.png" width="200" alt="Topic Selection" />
+  <img src="docs/screenshots/chat.png" width="200" alt="Chat View" />
+  <img src="docs/screenshots/create-thread.png" width="200" alt="Create Thread" />
+  <img src="docs/screenshots/bookmark.png" width="200" alt="Bookmarks" />
+  <img src="docs/screenshots/settings.png" width="200" alt="Settings" />
+</p>
+
+---
+
 ## Features
 
 ### Thread-Based Conversations
