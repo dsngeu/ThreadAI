@@ -8,12 +8,6 @@
 <h1 align="center">ThreadAI</h1>
 
 <p align="center">
-  <a href="https://dsngeu.github.io/ThreadAI/">
-    <img src="https://img.shields.io/badge/%F0%9F%93%84%20App%20Overview-View%20Full%20Preview-5A70FF?style=for-the-badge" />
-  </a>
-</p>
-
-<p align="center">
   <b>A production-quality iOS AI chat app with branching sub-thread conversations.</b><br/>
   Powered by OpenAI — use your own API key.
 </p>
