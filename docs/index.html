@@ -605,13 +605,12 @@
   <h1>ThreadAI</h1>
   <p class="cover-tagline">
     A production-quality iOS AI chat app with branching sub-thread conversations.<br/>
-    Anthropic + OpenAI · Your keys · Beautiful SwiftUI.
+    Powered by OpenAI · Your keys · Beautiful SwiftUI.
   </p>
   <div class="cover-badges">
     <span class="badge">iOS 17+</span>
     <span class="badge">Swift 5.9+</span>
     <span class="badge">SwiftUI</span>
-    <span class="badge">Anthropic API</span>
     <span class="badge">OpenAI API</span>
     <span class="badge">No Dependencies</span>
   </div>
@@ -654,7 +653,7 @@
       <h3>Real-Time Streaming</h3>
       <p>Responses stream token-by-token with a live blinking cursor. Stop generation at any time — the partial response is preserved.</p>
       <ul class="feature-list">
-        <li>SSE streaming (Anthropic) and JSON-line streaming (OpenAI)</li>
+        <li>JSON-line streaming over URLSession</li>
         <li>Typing indicator before first token</li>
         <li>Buffered rendering to avoid UI thrash</li>
         <li>Stop button with immediate cancellation</li>
@@ -707,7 +706,7 @@
         <li>Keychain storage only — never UserDefaults or logs</li>
         <li>Live validation via 1-token test request</li>
         <li>Status: Not Set / Validating / Valid / Invalid</li>
-        <li>Independent keys for Anthropic and OpenAI</li>
+        <li>Keychain-scoped per provider</li>
       </ul>
     </div>
 
@@ -717,25 +716,15 @@
 
   <!-- ── AI Providers ── -->
   <div class="section-label">AI Support</div>
-  <h2>Two providers, five models</h2>
+  <h2>OpenAI — two models</h2>
 
-  <div class="provider-grid">
-    <div class="provider-card anthropic">
-      <div class="provider-name">Anthropic</div>
-      <div class="provider-sub">anthropic api · sse streaming</div>
-      <span class="model-pill">Opus 4</span>
-      <span class="model-pill">Sonnet 4</span>
-      <span class="model-pill">Haiku 4.5</span>
-      <div class="provider-stat"><strong>Context window:</strong> 200,000 tokens</div>
-      <div class="provider-stat"><strong>Endpoint:</strong> api.anthropic.com/v1/messages</div>
-    </div>
+  <div class="provider-grid" style="grid-template-columns: 1fr;">
     <div class="provider-card openai">
       <div class="provider-name">OpenAI</div>
       <div class="provider-sub">openai api · json-line streaming</div>
       <span class="model-pill">GPT-4o</span>
       <span class="model-pill">GPT-4o mini</span>
       <div class="provider-stat"><strong>Context window:</strong> 128,000 tokens</div>
-      <div class="provider-stat"><strong>Endpoint:</strong> api.openai.com/v1/chat/completions</div>
     </div>
   </div>
 
@@ -805,7 +794,7 @@
         <div class="arch-layer-label">AI Harness</div>
         <div class="arch-boxes">
           <div class="arch-box harness">AIProvider Protocol</div>
-          <div class="arch-box harness">AnthropicProvider</div>
+          <div class="arch-box harness">OpenAIProvider</div>
           <div class="arch-box harness">OpenAIProvider</div>
         </div>
       </div>
@@ -970,7 +959,7 @@
       <div class="step-number">3</div>
       <div class="step-content">
         <h4>Add your API keys</h4>
-        <p>Open the <strong>Settings</strong> tab in the app. Tap <strong>Anthropic API Key</strong> or <strong>OpenAI API Key</strong>, paste your key, and tap <strong>Validate &amp; Save</strong>. The app makes a live 1-token test before storing the key in Keychain.</p>
+        <p>Open the <strong>Settings</strong> tab in the app. Tap <strong>OpenAI API Key</strong>, paste your key, and tap <strong>Validate &amp; Save</strong>. The app makes a live 1-token test before storing the key in Keychain.</p>
       </div>
     </div>
     <div class="step">
@@ -998,7 +987,7 @@
     </div>
     <div class="tech-item">
       <div class="tech-item-label">API Key</div>
-      <div class="tech-item-value">Anthropic or OpenAI</div>
+      <div class="tech-item-value">OpenAI</div>
     </div>
   </div>
 
@@ -1021,7 +1010,7 @@
       </tr>
       <tr>
         <td>Core/AIHarness/</td>
-        <td>AIProvider protocol, AnthropicProvider, OpenAIProvider, AIHarnessService, all AI models</td>
+        <td>AIProvider protocol, OpenAIProvider, AIHarnessService, all AI models</td>
       </tr>
       <tr>
         <td>Core/Domain/</td>

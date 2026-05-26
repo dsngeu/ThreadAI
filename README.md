@@ -15,7 +15,7 @@
 
 <p align="center">
   <b>A production-quality iOS AI chat app with branching sub-thread conversations.</b><br/>
-  Supports Anthropic and OpenAI — use your own API keys.
+  Powered by OpenAI — use your own API key.
 </p>
 
 ---
@@ -31,22 +31,21 @@ You can **fork any message into a sub-thread**, where the parent conversation is
 ## Features
 
 ### Thread-Based Conversations
-- Start a top-level conversation with any supported AI model
+- Start a top-level conversation with any supported model
 - **Fork any message into a sub-thread** — parent context is automatically included
 - Sub-threads are displayed as inline cards inside the parent chat
 - Unlimited nesting depth with full context chain built recursively
 - Browse all sub-threads of a conversation from the thread list sheet
 
-### Multi-Provider AI Support
+### AI Model Support
 | Provider | Models | Context Window |
 |----------|--------|----------------|
-| Anthropic | Opus 4, Sonnet 4, Haiku 4.5 | 200k tokens |
 | OpenAI | GPT-4o, GPT-4o mini | 128k tokens |
 
-- Switch AI model mid-conversation from the chat toolbar
+- Switch model mid-conversation from the chat toolbar
 - Streaming responses with a live blinking cursor
 - Stop generation at any time with the stop button
-- API keys are validated before saving (live test request)
+- API key validated before saving (live test request)
 
 ### Real-Time Streaming
 - Responses stream token-by-token with smooth buffered rendering
@@ -74,8 +73,8 @@ You can **fork any message into a sub-thread**, where the parent conversation is
 - Sub-threads displayed inline under their parent in the conversation list
 
 ### Settings & Security
-- Enter and validate Anthropic and OpenAI API keys
-- Keys stored in the iOS **Keychain** — never in UserDefaults or logs
+- Enter and validate your OpenAI API key
+- Key stored in the iOS **Keychain** — never in UserDefaults or logs
 - API key status: Not Set / Validating / Valid / Invalid
 - Validation makes a real 1-token test request before saving
 
@@ -132,7 +131,7 @@ Nothing else changes.
 ### Requirements
 - Xcode 15+
 - iOS 17+ device or simulator
-- An API key from [Anthropic](https://console.anthropic.com) and/or [OpenAI](https://platform.openai.com)
+- An [OpenAI API key](https://platform.openai.com)
 
 ### Installation
 ```bash
@@ -143,13 +142,13 @@ open ThreadAI.xcodeproj
 
 Build and run on your device or simulator. No package manager setup needed — there are no third-party dependencies.
 
-### Adding Your API Keys
+### Adding Your API Key
 1. Open the app and go to the **Settings** tab
-2. Tap **Anthropic API Key** or **OpenAI API Key**
+2. Tap **OpenAI API Key**
 3. Paste your key and tap **Validate & Save**
 4. A live test confirms the key works before it is stored
 
-Keys are stored in the iOS Keychain and are never logged or transmitted anywhere other than the respective AI provider's API.
+Keys are stored in the iOS Keychain and are never logged or transmitted anywhere other than OpenAI's API.
 
 ---
 
@@ -159,7 +158,7 @@ Keys are stored in the iOS Keychain and are never logged or transmitted anywhere
 ThreadAI/
 ├── App/                        # Entry point and dependency wiring
 ├── Core/
-│   ├── AIHarness/              # Provider protocol + Anthropic + OpenAI implementations
+│   ├── AIHarness/              # AIProvider protocol + OpenAI implementation
 │   ├── Domain/                 # Entities, UseCases, Repository protocols
 │   └── Data/                   # CoreData stack, repository implementations, Keychain
 ├── Features/
